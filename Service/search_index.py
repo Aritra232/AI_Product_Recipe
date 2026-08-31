@@ -1,4 +1,5 @@
 import json
+from json import JSONDecodeError
 from pathlib import Path
 from typing import Any
 
@@ -20,8 +21,13 @@ class SearchIndex:
             self._by_normalized = {}
             return
 
-        with self.index_path.open("r", encoding="utf-8") as index_file:
-            payload = json.load(index_file)
+        try:
+            with self.index_path.open("r", encoding="utf-8") as index_file:
+                payload = json.load(index_file)
+        except (JSONDecodeError, OSError):
+            self.terms = []
+            self._by_normalized = {}
+            return
 
         self.terms = payload.get("terms", [])
         self._by_normalized = {item["normalized"]: item for item in self.terms}

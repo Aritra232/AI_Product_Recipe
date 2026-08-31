@@ -145,6 +145,15 @@ git pull
 
 The Git hook will automatically run Docker rebuild/restart and regenerate the search index.
 
+If you do not want to use the Git hook, use this simple manual VPS flow:
+
+```bash
+git pull
+docker compose up --build -d --force-recreate
+```
+
+The Docker `indexer` service will run automatically after the API becomes healthy.
+
 The deploy script will:
 
 - pull latest code from GitHub
