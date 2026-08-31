@@ -16,21 +16,8 @@ elif command -v python3 >/dev/null 2>&1; then
 fi
 
 echo "Building and starting Docker container..."
-docker compose up --build -d
-
-echo "Waiting for API..."
-for i in {1..30}; do
-  if curl -fsS http://127.0.0.1:7011/health >/dev/null 2>&1; then
-    break
-  fi
-  sleep 2
-done
-
-echo "Rebuilding CSV/OpenAI search index..."
-curl -fsS -X POST http://127.0.0.1:7011/admin/import-csv
-echo
+docker compose up --build -d --force-recreate
 
 echo "Deployment complete."
 curl -fsS http://127.0.0.1:7011/health
 echo
-

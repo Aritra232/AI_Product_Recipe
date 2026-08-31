@@ -96,7 +96,7 @@ Open:
 http://127.0.0.1:7011/docs
 ```
 
-Rebuild index after changing CSV files:
+Rebuild index after changing CSV files manually:
 
 ```powershell
 Invoke-RestMethod -Method Post http://127.0.0.1:7011/admin/import-csv
@@ -150,5 +150,5 @@ The deploy script will:
 - pull latest code from GitHub
 - create a valid empty index if needed
 - rebuild and restart Docker
-- call `/admin/import-csv`
+- run the Docker `indexer` service
 - regenerate `Service/data/search_index.json` on the VPS

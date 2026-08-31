@@ -9,11 +9,11 @@ Set-Location (Resolve-Path "$PSScriptRoot\..")
 
 Write-Host "Checking repository safety..."
 
-if (git ls-files --error-unmatch .env 2>$null) {
+if (@(git ls-files .env).Count -gt 0) {
     Write-Error ".env is tracked by Git. Remove it first with: git rm --cached .env"
 }
 
-if (git ls-files --error-unmatch Service/data/search_index.json 2>$null) {
+if (@(git ls-files Service/data/search_index.json).Count -gt 0) {
     Write-Host "Removing generated search index from Git tracking..."
     git rm --cached Service/data/search_index.json
 }
@@ -34,4 +34,3 @@ if (-not $status) {
 git push origin $Branch
 
 Write-Host "Push complete."
-
