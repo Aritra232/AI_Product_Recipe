@@ -53,6 +53,9 @@ htmlcov/
 temp/
 *.log
 
+# Generated search index
+Service/data/
+
 # Video/Media files (optional - uncomment if needed)
 # *.mp4
 # *.mov

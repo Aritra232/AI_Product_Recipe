@@ -1,1 +1,2 @@
-Service/data/search_index.json filter=lfs diff=lfs merge=lfs -text
+# No Git LFS tracking is needed for this project.
+# Service/data/search_index.json is generated on the server and ignored by Git.
