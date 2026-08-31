@@ -36,13 +36,13 @@ OPENAI_EMBEDDING_MODEL=text-embedding-3-small
 
 ```powershell
 python -m pip install -r requirements.txt
-python -m uvicorn main:app --host 127.0.0.1 --port 8005 --reload
+python -m uvicorn main:app --host 127.0.0.1 --port 7011 --reload
 ```
 
 Open:
 
 ```text
-http://127.0.0.1:8005/docs
+http://127.0.0.1:7011/docs
 ```
 
 ## Endpoints
@@ -93,12 +93,11 @@ docker compose up --build
 Open:
 
 ```text
-http://127.0.0.1:8005/docs
+http://127.0.0.1:7011/docs
 ```
 
 Rebuild index after changing CSV files:
 
 ```powershell
-Invoke-RestMethod -Method Post http://127.0.0.1:8005/admin/import-csv
+Invoke-RestMethod -Method Post http://127.0.0.1:7011/admin/import-csv
 ```
-
